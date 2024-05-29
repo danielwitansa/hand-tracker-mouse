@@ -4,12 +4,19 @@ import pyautogui
 import math
 import numpy as np
 
-cap = cv2.VideoCapture(0)
-cap.set(3, 800)
-cap.set(4, 600)
-
 sensitivity = 2
 click = 30
+hvid = 800
+vvid = 600
+hres = 1920
+vres = 1080
+
+cap = cv2.VideoCapture(0)
+cap.set(3, hvid)
+cap.set(4, vvid)
+
+xval = int(hres/hvid)
+yval = int(vres/vvid)
 
 class kalmanFilter:
     def __init__(self):
@@ -64,11 +71,11 @@ class handTracker:
 
                         print("x:", cxi,"| y:", cyi)
                     
-                if (cxi*1.6*sensitivity <= 1366) and (cyi*1.2*sensitivity <= 768):
+                if (cxi*xval*sensitivity <= hres) and (cyi*yval*sensitivity <= vres):
                     predicted = self.filter.predict()
                     corrected = self.filter.correct(np.array([[np.float32(cxi)], [np.float32(cyi)]]))
-                    x = corrected[0]*1.6*sensitivity
-                    y = corrected[1]*1.2*sensitivity
+                    x = corrected[0]*xval*sensitivity
+                    y = corrected[1]*yval*sensitivity
                     pyautogui.moveTo(x, y)
 
                     print("kx:", corrected[0], "| ky:", corrected[1])
