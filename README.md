@@ -1,6 +1,6 @@
 # Hand Tracking Mouse Control
 
-This repository contains a Python application that uses `OpenCV` and `MediaPipe` for hand tracking and `pyautogui` to control mouse movements and clicks. The application also incorporates a Kalman filter for smooth mouse movement.
+This repository contains a Python application that uses `OpenCV` and `MediaPipe` for hand tracking and `pyautogui` to control mouse movements and clicks. The application also incorporates a `Kalman filter` for smooth mouse movement.
 
 ## Installation
 
